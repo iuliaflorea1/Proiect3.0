@@ -16,5 +16,7 @@ namespace Proiect3._0.Data
 
         public DbSet<Proiect3._0.Models.Spectacol> Spectacol { get; set; } = default!;
         public DbSet<Proiect3._0.Models.Locatia> Locatia { get; set; } = default!;
+        public DbSet<Proiect3._0.Models.Regizor> Regizor { get; set; } = default!;
+        public DbSet<Proiect3._0.Models.Tip> Tip { get; set; } = default!;
     }
 }

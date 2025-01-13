@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Proiect3._0.Data;
 using Proiect3._0.Models;
 
-namespace Proiect3._0.Pages.Spectacole
+namespace Proiect3._0.Pages.Tipuri
 {
     public class IndexModel : PageModel
     {
@@ -19,14 +19,11 @@ namespace Proiect3._0.Pages.Spectacole
             _context = context;
         }
 
-        public IList<Spectacol> Spectacol { get;set; } = default!;
+        public IList<Tip> Tip { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            Spectacol = await _context.Spectacol
-                .Include(b => b.Locatia)
-                 .Include(b => b.Regizor)
-                .ToListAsync();
+            Tip = await _context.Tip.ToListAsync();
         }
     }
 }

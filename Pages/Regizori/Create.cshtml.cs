@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Policy;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -9,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Proiect3._0.Data;
 using Proiect3._0.Models;
 
-namespace Proiect3._0.Pages.Spectacole
+namespace Proiect3._0.Pages.Regizori
 {
     public class CreateModel : PageModel
     {
@@ -22,13 +21,11 @@ namespace Proiect3._0.Pages.Spectacole
 
         public IActionResult OnGet()
         {
-            ViewData["LocatieID"] = new SelectList(_context.Set<Locatia>(), "ID","DenumireLocatie");
-            ViewData["RegizorID"] = new SelectList(_context.Set<Regizor>(), "ID","NumeRegizor");
             return Page();
         }
 
         [BindProperty]
-        public Spectacol Spectacol { get; set; } = default!;
+        public Regizor Regizor { get; set; } = default!;
 
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
@@ -38,7 +35,7 @@ namespace Proiect3._0.Pages.Spectacole
                 return Page();
             }
 
-            _context.Spectacol.Add(Spectacol);
+            _context.Regizor.Add(Regizor);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

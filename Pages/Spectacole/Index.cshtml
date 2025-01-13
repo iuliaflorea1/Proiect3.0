@@ -1,4 +1,4 @@
-﻿@page
+﻿@page 
 @model Proiect3._0.Pages.Spectacole.IndexModel
 
 @{
@@ -17,7 +17,7 @@
                 @Html.DisplayNameFor(model => model.Spectacol[0].Titlu)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Spectacol[0].Regizor)
+                @Html.DisplayNameFor(model => model.Spectacol[0].Regizor.NumeRegizor)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Spectacol[0].DataSpectacol)
@@ -35,7 +35,7 @@
                 @Html.DisplayFor(modelItem => item.Titlu)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Regizor)
+                @Html.DisplayFor(modelItem => item.Regizor.NumeRegizor)
             </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.DataSpectacol)

@@ -20,9 +20,10 @@
                 <span asp-validation-for="Spectacol.Titlu" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Spectacol.Regizor" class="control-label"></label>
-                <input asp-for="Spectacol.Regizor" class="form-control" />
-                <span asp-validation-for="Spectacol.Regizor" class="text-danger"></span>
+                <label asp-for="Spectacol.RegizorID" class="control-label">Nume Regizor</label>
+                <select asp-for="Spectacol.RegizorID" class="form-control" asp-items="ViewBag.RegizorID">
+                </select>
+                <span asp-validation-for="Spectacol.RegizorID" class="text-danger"></span>
             </div>
             <div class="form-group"> 
                 <label asp-for="Spectacol.DataSpectacol" class="control-label"></label> 

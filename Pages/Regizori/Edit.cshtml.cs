@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Policy;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -10,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Proiect3._0.Data;
 using Proiect3._0.Models;
 
-namespace Proiect3._0.Pages.Spectacole
+namespace Proiect3._0.Pages.Regizori
 {
     public class EditModel : PageModel
     {
@@ -22,7 +21,7 @@ namespace Proiect3._0.Pages.Spectacole
         }
 
         [BindProperty]
-        public Spectacol Spectacol { get; set; } = default!;
+        public Regizor Regizor { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -31,14 +30,12 @@ namespace Proiect3._0.Pages.Spectacole
                 return NotFound();
             }
 
-            var spectacol =  await _context.Spectacol.FirstOrDefaultAsync(m => m.ID == id);
-            if (spectacol == null)
+            var regizor =  await _context.Regizor.FirstOrDefaultAsync(m => m.ID == id);
+            if (regizor == null)
             {
                 return NotFound();
             }
-            Spectacol = spectacol;
-            ViewData["LocatiaID"] = new SelectList(_context.Set<Locatia>(), "ID","DenumireLocatie");
-            ViewData["RegizorID"] = new SelectList(_context.Set<Regizor>(), "ID", "NumeRegizor");
+            Regizor = regizor;
             return Page();
         }
 
@@ -51,7 +48,7 @@ namespace Proiect3._0.Pages.Spectacole
                 return Page();
             }
 
-            _context.Attach(Spectacol).State = EntityState.Modified;
+            _context.Attach(Regizor).State = EntityState.Modified;
 
             try
             {
@@ -59,7 +56,7 @@ namespace Proiect3._0.Pages.Spectacole
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!SpectacolExists(Spectacol.ID))
+                if (!RegizorExists(Regizor.ID))
                 {
                     return NotFound();
                 }
@@ -72,9 +69,9 @@ namespace Proiect3._0.Pages.Spectacole
             return RedirectToPage("./Index");
         }
 
-        private bool SpectacolExists(int id)
+        private bool RegizorExists(int id)
         {
-            return _context.Spectacol.Any(e => e.ID == id);
+            return _context.Regizor.Any(e => e.ID == id);
         }
     }
 }
