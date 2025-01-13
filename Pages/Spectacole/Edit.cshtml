@@ -1,0 +1,50 @@
+﻿@page
+@model Proiect3._0.Pages.Spectacole.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Spectacol</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Spectacol.ID" />
+            <div class="form-group">
+                <label asp-for="Spectacol.Titlu" class="control-label"></label>
+                <input asp-for="Spectacol.Titlu" class="form-control" />
+                <span asp-validation-for="Spectacol.Titlu" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Spectacol.Regizor" class="control-label"></label>
+                <input asp-for="Spectacol.Regizor" class="form-control" />
+                <span asp-validation-for="Spectacol.Regizor" class="text-danger"></span>
+            </div>
+            <div class="form-group"> 
+                <label asp-for="Spectacol.DataSpectacol" class="control-label"></label> 
+                <input asp-for="Spectacol.DataSpectacol" class="form-control" /> 
+                <span asp-validation-for="Spectacol.DataSpectacol" class="textdanger"></span> 
+            </div>
+            <div class="form-group"> 
+            <label asp-for="Spectacol.LocatiaID" class="control-label">Denumire Locatie</label> 
+            <select asp-for="Spectacol.LocatiaID" class="form-control" asp-items="ViewBag.LocatiaID">  </select> 
+            <span asp-validation-for="Spectacol.LocatiaID" class="text-danger"></span> 
+            </div> 
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

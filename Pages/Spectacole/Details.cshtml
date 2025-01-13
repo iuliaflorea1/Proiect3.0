@@ -1,0 +1,37 @@
+﻿@page
+@model Proiect3._0.Pages.Spectacole.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Spectacol</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Spectacol.Titlu)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Spectacol.Titlu)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Spectacol.Regizor)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Spectacol.Regizor)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Spectacol.DataSpectacol)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Spectacol.DataSpectacol)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Spectacol.ID">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>
