@@ -49,7 +49,7 @@ namespace Proiect3._0.Pages.Participari
                     SpectacolFullName = x.Titlu + " - " + x.Regizor.NumeRegizor
                 });
             ViewData["SpectacolID"] = new SelectList(spectacolList, "ID", "SpectacolFullName");
-            ViewData["MembruID"] = new SelectList(_context.Membru, "ID", "ID", "NumeRegizor");
+            ViewData["MembruID"] = new SelectList(_context.Membru, "ID", "NumeMembru");
             return Page();
         }
 

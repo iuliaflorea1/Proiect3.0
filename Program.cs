@@ -5,8 +5,20 @@ using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminPolicy", policy =>
+policy.RequireRole("Admin"));
+});
+
 // Add services to the container.
-builder.Services.AddRazorPages();
+builder.Services.AddRazorPages(options =>
+{
+    options.Conventions.AuthorizeFolder("/Spectacole");
+   
+    options.Conventions.AuthorizeFolder("/Membri", "AdminPolicy");
+
+});
 
 // Configure the primary application database context
 builder.Services.AddDbContext<Proiect3_0Context>(options =>
@@ -21,6 +33,7 @@ builder.Services.AddDbContext<LibraryIdentityContext>(options =>
 // Add Identity services
 builder.Services.AddDefaultIdentity<IdentityUser>(options =>
     options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<LibraryIdentityContext>();
 
 var app = builder.Build();

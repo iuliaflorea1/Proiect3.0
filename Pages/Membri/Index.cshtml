@@ -5,6 +5,12 @@
     ViewData["Title"] = "Index";
 }
 
+<style>
+    body {
+        background-color: #e6e6fa;
+    }
+</style>
+
 <h1>Index</h1>
 
 
@@ -42,9 +48,10 @@
                 @Html.DisplayFor(modelItem => item.Telefon)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> 
-                
-                
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+
+
             </td>
         </tr>
 }
