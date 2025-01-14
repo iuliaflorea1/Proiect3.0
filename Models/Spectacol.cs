@@ -11,14 +11,18 @@ namespace Proiect3._0.Models
         public string Titlu { get; set; }
         
         [DataType(DataType.Date)]
+        [Display(Name = "Data Spectacolului")]
         public DateTime DataSpectacol { get; set; }
         public int? LocatiaID { get; set; }
 
         public Locatia? Locatia { get; set; }
-        public ICollection<CategorieSpectacol>? CategorieSpectacole { get; set; }
+        
         public int? RegizorID { get; set; }
-
         public Regizor? Regizor { get; set; }
+        
+        public int? TipID { get; set; }
+        public Tip? Tip { get; set; }
 
+        public ICollection<Participare>? Participari { get; set; }
     }
 }

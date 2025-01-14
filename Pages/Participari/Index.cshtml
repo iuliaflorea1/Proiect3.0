@@ -1,0 +1,54 @@
+﻿@page
+@model Proiect3._0.Pages.Participari.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Participare[0].Membru)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Participare[0].Spectacol)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Participare[0].DataSpectacol)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model =>
+                         model.Participare[0].Spectacol.Regizor)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Participare) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Membru.NumeMembru)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Spectacol.Titlu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataSpectacol)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Spectacol.Regizor.NumeRegizor)
+                </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

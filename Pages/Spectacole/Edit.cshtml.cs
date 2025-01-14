@@ -39,6 +39,7 @@ namespace Proiect3._0.Pages.Spectacole
             Spectacol = spectacol;
             ViewData["LocatiaID"] = new SelectList(_context.Set<Locatia>(), "ID","DenumireLocatie");
             ViewData["RegizorID"] = new SelectList(_context.Set<Regizor>(), "ID", "NumeRegizor");
+            ViewData["TipID"] = new SelectList(_context.Set<Tip>(), "ID","DenumireTip");
             return Page();
         }
 

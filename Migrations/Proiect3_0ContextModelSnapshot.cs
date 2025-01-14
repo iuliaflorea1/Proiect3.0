@@ -22,29 +22,6 @@ namespace Proiect3._0.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Proiect3._0.Models.CategorieSpectacol", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
-
-                    b.Property<int>("SpectacolID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TipID")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("SpectacolID");
-
-                    b.HasIndex("TipID");
-
-                    b.ToTable("CategorieSpectacol");
-                });
-
             modelBuilder.Entity("Proiect3._0.Models.Locatia", b =>
                 {
                     b.Property<int>("ID")
@@ -60,6 +37,58 @@ namespace Proiect3._0.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Locatia");
+                });
+
+            modelBuilder.Entity("Proiect3._0.Models.Membru", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("Adresa")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NumeMembru")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Telefon")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Membru");
+                });
+
+            modelBuilder.Entity("Proiect3._0.Models.Participare", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<DateTime>("DataSpectacol")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("MembruID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SpectacolID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("MembruID");
+
+                    b.HasIndex("SpectacolID");
+
+                    b.ToTable("Participare");
                 });
 
             modelBuilder.Entity("Proiect3._0.Models.Regizor", b =>
@@ -96,6 +125,9 @@ namespace Proiect3._0.Migrations
                     b.Property<int?>("RegizorID")
                         .HasColumnType("int");
 
+                    b.Property<int?>("TipID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Titlu")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -105,6 +137,8 @@ namespace Proiect3._0.Migrations
                     b.HasIndex("LocatiaID");
 
                     b.HasIndex("RegizorID");
+
+                    b.HasIndex("TipID");
 
                     b.ToTable("Spectacol");
                 });
@@ -126,23 +160,19 @@ namespace Proiect3._0.Migrations
                     b.ToTable("Tip");
                 });
 
-            modelBuilder.Entity("Proiect3._0.Models.CategorieSpectacol", b =>
+            modelBuilder.Entity("Proiect3._0.Models.Participare", b =>
                 {
-                    b.HasOne("Proiect3._0.Models.Spectacol", "Spectacol")
-                        .WithMany("CategorieSpectacole")
-                        .HasForeignKey("SpectacolID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("Proiect3._0.Models.Membru", "Membru")
+                        .WithMany("Participari")
+                        .HasForeignKey("MembruID");
 
-                    b.HasOne("Proiect3._0.Models.Tip", "Tip")
-                        .WithMany("CategorieSpectacole")
-                        .HasForeignKey("TipID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("Proiect3._0.Models.Spectacol", "Spectacol")
+                        .WithMany("Participari")
+                        .HasForeignKey("SpectacolID");
+
+                    b.Navigation("Membru");
 
                     b.Navigation("Spectacol");
-
-                    b.Navigation("Tip");
                 });
 
             modelBuilder.Entity("Proiect3._0.Models.Spectacol", b =>
@@ -155,14 +185,25 @@ namespace Proiect3._0.Migrations
                         .WithMany("Spectacole")
                         .HasForeignKey("RegizorID");
 
+                    b.HasOne("Proiect3._0.Models.Tip", "Tip")
+                        .WithMany("Spectacole")
+                        .HasForeignKey("TipID");
+
                     b.Navigation("Locatia");
 
                     b.Navigation("Regizor");
+
+                    b.Navigation("Tip");
                 });
 
             modelBuilder.Entity("Proiect3._0.Models.Locatia", b =>
                 {
                     b.Navigation("Spectacole");
+                });
+
+            modelBuilder.Entity("Proiect3._0.Models.Membru", b =>
+                {
+                    b.Navigation("Participari");
                 });
 
             modelBuilder.Entity("Proiect3._0.Models.Regizor", b =>
@@ -172,12 +213,12 @@ namespace Proiect3._0.Migrations
 
             modelBuilder.Entity("Proiect3._0.Models.Spectacol", b =>
                 {
-                    b.Navigation("CategorieSpectacole");
+                    b.Navigation("Participari");
                 });
 
             modelBuilder.Entity("Proiect3._0.Models.Tip", b =>
                 {
-                    b.Navigation("CategorieSpectacole");
+                    b.Navigation("Spectacole");
                 });
 #pragma warning restore 612, 618
         }

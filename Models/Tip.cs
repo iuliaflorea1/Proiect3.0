@@ -6,6 +6,6 @@
 
         public string DenumireTip { get; set; }
 
-        public ICollection<CategorieSpectacol>? CategorieSpectacole { get; set; }
+        public ICollection<Spectacol>? Spectacole { get; set; }
     }
 }

@@ -36,6 +36,11 @@
             <span asp-validation-for="Spectacol.LocatiaID" class="text-danger"></span> 
             </div> 
             <div class="form-group">
+                <label asp-for="Spectacol.TipID" class="control-label">Tip Spectacol</label>
+                <select asp-for="Spectacol.TipID" class="form-control" asp-items="ViewBag.TipID">   </select>
+                <span asp-validation-for="Spectacol.TipID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>

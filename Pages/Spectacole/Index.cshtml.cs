@@ -25,7 +25,8 @@ namespace Proiect3._0.Pages.Spectacole
         {
             Spectacol = await _context.Spectacol
                 .Include(b => b.Locatia)
-                 .Include(b => b.Regizor)
+                .Include(b => b.Regizor)
+                .Include(b => b.Tip)
                 .ToListAsync();
         }
     }
