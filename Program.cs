@@ -18,6 +18,7 @@ builder.Services.AddRazorPages(options =>
    
     options.Conventions.AuthorizeFolder("/Membri", "AdminPolicy");
 
+
     options.Conventions.AuthorizeFolder("/Locatii");
     options.Conventions.AuthorizeFolder("/Participari");
     options.Conventions.AuthorizeFolder("/Regizori");
